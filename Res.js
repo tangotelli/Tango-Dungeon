@@ -1,7 +1,12 @@
 // Lista re recursos a precargar
 var imagenes = {
     fondo : "res/fondo.png",
+    fondo2 : "res/fondo2.png",
     suelo_trampa: "res/floor_spikes.png",
+    suelo_1: "res/floor_1.png",
+    suelo_2: "res/floor_2.png",
+    suelo_3: "res/floor_3.png",
+    suelo_4: "res/floor_4.png",
 };
 
 var rutasImagenes = Object.values(imagenes);
