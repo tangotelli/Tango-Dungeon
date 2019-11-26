@@ -10,6 +10,8 @@ class GameLayer extends Layer {
 
         this.suelos = [];
         this.vacios = [];
+        this.suelosTrampa = [];
+        this.agujeros = [];
 
         this.cargarMapa("res/0.txt");
     }
@@ -25,6 +27,12 @@ class GameLayer extends Layer {
         }
         for (i = 0; i < this.vacios.length; i++) {
             this.vacios[i].dibujar();
+        }
+        for (i = 0; i < this.suelosTrampa.length; i++) {
+            this.suelosTrampa[i].dibujar();
+        }
+        for (i = 0; i < this.agujeros.length; i++) {
+            this.agujeros[i].dibujar();
         }
         this.jugador.dibujar();
     }
@@ -67,6 +75,16 @@ class GameLayer extends Layer {
                 this.generarSuelo(x, y);
                 this.jugador = new Jugador(x, y);
                 this.jugador.y = this.jugador.y - this.jugador.alto/2;
+                break;
+            case "T":
+                var sueloTrampa = new SueloTrampa(x, y);
+                sueloTrampa.y = sueloTrampa.y - sueloTrampa.alto/2;
+                this.suelosTrampa.push(sueloTrampa);
+                break;
+            case "A":
+                var agujero = new Agujero(x, y);
+                agujero.y = agujero.y - agujero.alto/2;
+                this.suelosTrampa.push(agujero);
                 break;
         }
     }
