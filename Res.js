@@ -7,6 +7,7 @@ var imagenes = {
     suelo_2: "res/floor_2.png",
     suelo_3: "res/floor_3.png",
     suelo_4: "res/floor_4.png",
+    vacio: "res/vacio.png",
 };
 
 var rutasImagenes = Object.values(imagenes);

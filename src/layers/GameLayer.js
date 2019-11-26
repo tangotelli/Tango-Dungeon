@@ -9,6 +9,7 @@ class GameLayer extends Layer {
         this.fondo = new Fondo(imagenes.fondo,480*0.5,320*0.5);
 
         this.suelos = [];
+        this.vacios = [];
 
         this.cargarMapa("res/0.txt");
     }
@@ -22,6 +23,9 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.suelos.length; i++) {
             this.suelos[i].dibujar();
         }
+        for (i = 0; i < this.vacios.length; i++) {
+            this.vacios[i].dibujar();
+        }
     }
 
     cargarMapa(ruta) {
@@ -32,14 +36,14 @@ class GameLayer extends Layer {
         fichero.onreadystatechange = function () {
             let texto = fichero.responseText;
             let lineas = texto.split("\n");
-            this.anchoMapa = (lineas[0].length - 1) * 30;
-            this.altoMapa = (lineas.length - 1) * 30;
+            this.anchoMapa = (lineas[0].length - 1) * 16;
+            this.altoMapa = (lineas.length - 1) * 16;
             for (let i = 0; i < lineas.length; i++) {
                 let l = lineas[i];
                 for (let j = 0; j < l.length; j++) {
                     let s = l[j];
-                    let x = 30/2 + j*30;
-                    let y = 30 + i*30;
+                    let x = 16/2 + j*16;
+                    let y = 16 + i*16;
                     this.cargarObjetoMapa(s, x, y);
                 }
             }
@@ -52,6 +56,11 @@ class GameLayer extends Layer {
         switch (simbolo) {
             case "#":
                 this.generarSuelo(x, y);
+                break;
+            case ".":
+                var vacio = new Vacio(x, y);
+                vacio.y = vacio.y - vacio.alto;
+                this.vacios.push(vacio);
                 break;
         }
     }
