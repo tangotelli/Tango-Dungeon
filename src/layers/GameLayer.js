@@ -15,7 +15,7 @@ class GameLayer extends Layer {
     }
 
     actualizar (){
-
+        this.jugador.actualizar();
     }
 
     dibujar (){
@@ -26,6 +26,7 @@ class GameLayer extends Layer {
         for (i = 0; i < this.vacios.length; i++) {
             this.vacios[i].dibujar();
         }
+        this.jugador.dibujar();
     }
 
     cargarMapa(ruta) {
@@ -59,8 +60,13 @@ class GameLayer extends Layer {
                 break;
             case ".":
                 var vacio = new Vacio(x, y);
-                vacio.y = vacio.y - vacio.alto;
+                vacio.y = vacio.y - vacio.alto/2;
                 this.vacios.push(vacio);
+                break;
+            case "J":
+                this.generarSuelo(x, y);
+                this.jugador = new Jugador(x, y);
+                this.jugador.y = this.jugador.y - this.jugador.alto/2;
                 break;
         }
     }
@@ -86,5 +92,36 @@ class GameLayer extends Layer {
         suelo.y = suelo.y - suelo.alto/2;
         this.suelos.push(suelo);
     }
+
+    procesarControles( ){
+        // disparar
+        if (  controles.disparo ){
+
+        }
+
+        // Eje X
+        if ( controles.moverX > 0 ){
+            this.jugador.moverX(1);
+
+        }else if ( controles.moverX < 0){
+            this.jugador.moverX(-1);
+
+        } else {
+            this.jugador.moverX(0);
+        }
+
+        // Eje Y
+        if ( controles.moverY > 0 ){
+            this.jugador.moverY(-1);
+
+        } else if ( controles.moverY < 0 ){
+            this.jugador.moverY(1);
+
+        } else {
+            this.jugador.moverY(0);
+        }
+
+    }
+
 
 }

@@ -6,6 +6,9 @@ var escaladoMinimo = 1;
 // Capas
 var gameLayer;
 
+// Controles
+var controles = {};
+
 // Inicio capas y bucle del juego
 function iniciarJuego() {
     gameLayer = new GameLayer();
@@ -17,6 +20,7 @@ iniciarJuego();
 function loop(){
     console.log("loop - ")
     gameLayer.actualizar();
+    gameLayer.procesarControles();
     gameLayer.dibujar();
 }
 
