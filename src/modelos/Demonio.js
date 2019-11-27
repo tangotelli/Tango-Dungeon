@@ -7,11 +7,17 @@ class Demonio extends Enemigo {
         this.vida = 500;
         this.daño = 100;
         // Animaciones
-
+       // this.aIdleDerecha = new Animacion(imagenes.demonio_idle_derecha, this.ancho, this.alto, 6, 4);
+        //this.animacion = this.aIdleDerecha;
     }
 
     actualizar() {
+        //this.animacion.actualizar();
         this.x = this.x + this.vx;
         this.y = this.y + this.vy;
+    }
+
+    dibujar() {
+        //this.animacion.dibujar(this.x, this.y);
     }
 }

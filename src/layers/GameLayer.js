@@ -22,6 +22,13 @@ class GameLayer extends Layer {
         for (var i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].actualizar();
         }
+         //Agujeros
+        for (var j = 0; j < this.agujeros.length; j++) {
+            if (this.jugador.colisiona(this.agujeros[j])) {
+                // IMPRIMIR MENSAJE MUERTE POR CAIDA
+                this.iniciar();
+            }
+        }
     }
 
     dibujar (){
@@ -91,7 +98,7 @@ class GameLayer extends Layer {
             case "A":
                 var agujero = new Agujero(x, y);
                 agujero.y = agujero.y - agujero.alto/2;
-                this.suelosTrampa.push(agujero);
+                this.agujeros.push(agujero);
                 break;
             case "D":
                 this.generarSuelo(x, y);

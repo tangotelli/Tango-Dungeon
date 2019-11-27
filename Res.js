@@ -16,6 +16,9 @@ var imagenes = {
     monstruo_del_pantano: "res/swampy.png",
     zombie: "res/zombie.png",
     disparo_nigromante: "res/disparo_nigromante.png",
+    demonio_idle_derecha: "res/bigDemonIdleDerecha.png",
+    ogro_idle_derecha: "res/ogreIdleDerecha.png",
+    swampy_idle_derecha: "res/swampyIdleDerecha.png",
 };
 
 var rutasImagenes = Object.values(imagenes);
