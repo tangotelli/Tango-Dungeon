@@ -129,7 +129,7 @@ class GameLayer extends Layer {
     generarSuelo(x, y) {
         var floorType =  Math.floor(Math.random() * (5 - 1) + 1);
         var suelo;
-        console.log("CARGANDO SUELO DE TIPO " + floorType);
+        //console.log("CARGANDO SUELO DE TIPO " + floorType);
         switch (floorType) {
             case 1:
                 suelo = new Suelo(imagenes.suelo_1, x, y);
