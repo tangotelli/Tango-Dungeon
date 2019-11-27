@@ -10,6 +10,11 @@ var imagenes = {
     vacio: "res/vacio.png",
     jugador: "res/jugador1.png",
     agujero: "res/hole.png",
+    demonio: "res/big_demon.png",
+    nigromante: "res/necromancer.png",
+    ogro: "res/ogre.png",
+    monstruo_del_pantano: "res/swampy.png",
+    zombie: "res/zombie.png",
 };
 
 var rutasImagenes = Object.values(imagenes);

@@ -12,12 +12,16 @@ class GameLayer extends Layer {
         this.vacios = [];
         this.suelosTrampa = [];
         this.agujeros = [];
+        this.enemigos = [];
 
         this.cargarMapa("res/0.txt");
     }
 
     actualizar (){
         this.jugador.actualizar();
+        for (var i = 0; i < this.enemigos.length; i++) {
+            this.enemigos[i].actualizar();
+        }
     }
 
     dibujar (){
@@ -33,6 +37,9 @@ class GameLayer extends Layer {
         }
         for (i = 0; i < this.agujeros.length; i++) {
             this.agujeros[i].dibujar();
+        }
+        for (i = 0; i < this.enemigos.length; i++) {
+            this.enemigos[i].dibujar();
         }
         this.jugador.dibujar();
     }
@@ -85,6 +92,36 @@ class GameLayer extends Layer {
                 var agujero = new Agujero(x, y);
                 agujero.y = agujero.y - agujero.alto/2;
                 this.suelosTrampa.push(agujero);
+                break;
+            case "D":
+                this.generarSuelo(x, y);
+                var demonio = new Demonio(x, y);
+                demonio.y = demonio.y - demonio.alto/2;
+                this.enemigos.push(demonio);
+                break;
+            case "O":
+                this.generarSuelo(x, y);
+                var ogro = new Ogro(x, y);
+                ogro.y = ogro.y - ogro.alto/2;
+                this.enemigos.push(ogro);
+                break;
+            case "N":
+                this.generarSuelo(x, y);
+                var nigromante = new Nigromante(x, y);
+                nigromante.y = nigromante.y - nigromante.alto/2;
+                this.enemigos.push(nigromante);
+                break;
+            case "M":
+                this.generarSuelo(x, y);
+                var monstruo = new MonstruoDelPantano(x, y);
+                monstruo.y = monstruo.y - monstruo.alto/2;
+                this.enemigos.push(monstruo);
+                break;
+            case "Z":
+                this.generarSuelo(x, y);
+                var zombie = new Zombie(x, y);
+                zombie.y = zombie.y - zombie.alto/2;
+                this.enemigos.push(zombie);
                 break;
         }
     }
