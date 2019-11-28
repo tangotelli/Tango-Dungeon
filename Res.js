@@ -19,6 +19,9 @@ var imagenes = {
     demonio_idle_derecha: "res/bigDemonIdleDerecha.png",
     ogro_idle_derecha: "res/ogreIdleDerecha.png",
     swampy_idle_derecha: "res/swampyIdleDerecha.png",
+    nigromante_idle_derecha: "res/necromancerIdleDerecha.png",
+    zombie_idle_derecha: "res/zombieIdleDerecha.png",
+    jugador_idle_derecha: "res/jugador1IdleDerecha.png",
 };
 
 var rutasImagenes = Object.values(imagenes);
