@@ -14,6 +14,7 @@ class Demonio extends Enemigo {
         this.orientacion = orientaciones.derecha;
         // Animaciones
         this.aIdleDerecha = new Animacion(imagenes.demonio_idle_derecha, this.ancho, this.alto, 6, 4);
+        this.aIdleIzquierda = new Animacion(imagenes.demonio_idle_izquierda, this.ancho, this.alto, 6, 4);
         this.animacion = this.aIdleDerecha;
     }
 

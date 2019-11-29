@@ -230,10 +230,10 @@ class GameLayer extends Layer {
         // Eje X
         if ( controles.moverX > 0 ){
             this.jugador.moverX(1);
-
+            this.jugador.orientacion = orientaciones.derecha;
         }else if ( controles.moverX < 0){
             this.jugador.moverX(-1);
-
+            this.jugador.orientacion = orientaciones.izquierda;
         } else {
             this.jugador.moverX(0);
         }

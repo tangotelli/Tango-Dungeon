@@ -18,11 +18,17 @@ var imagenes = {
     zombie: "res/zombie.png",
     disparo_nigromante: "res/disparo_nigromante.png",
     demonio_idle_derecha: "res/bigDemonIdleDerecha.png",
+    demonio_idle_izquierda: "res/bigDemonIdleIzquierda.png",
     ogro_idle_derecha: "res/ogreIdleDerecha.png",
+    ogro_idle_izquierda: "res/ogreIdleIzquierda.png",
     swampy_idle_derecha: "res/swampyIdleDerecha.png",
+    swampy_idle_izquierda: "res/swampyIdleIzquierda.png",
     nigromante_idle_derecha: "res/necromancerIdleDerecha.png",
+    nigromante_idle_izquierda: "res/necromancerIdleIzquierda.png",
     zombie_idle_derecha: "res/zombieIdleDerecha.png",
+    zombie_idle_izquierda: "res/zombieIdleIzquierda.png",
     jugador_idle_derecha: "res/jugador1IdleDerecha.png",
+    jugador_idle_izquierda: "res/jugador1IdleIzquierda.png",
     vida: "res/vida.png",
 };
 

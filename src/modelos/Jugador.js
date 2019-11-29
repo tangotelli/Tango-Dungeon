@@ -7,6 +7,7 @@ class Jugador extends Modelo {
         this.orientacion = orientaciones.derecha;
         // Animaciones
         this.aIdleDerecha = new Animacion(imagenes.jugador_idle_derecha, this.ancho, this.alto, 10, 4);
+        this.aIdleIzquierda = new Animacion(imagenes.jugador_idle_izquierda, this.ancho, this.alto, 10, 4);
         this.animacion = this.aIdleDerecha;
     }
 
@@ -14,6 +15,13 @@ class Jugador extends Modelo {
         this.animacion.actualizar();
         this.x = this.x + this.vx;
         this.y = this.y + this.vy;
+
+        if (this.orientacion == orientaciones.derecha) {
+            this.animacion = this.aIdleDerecha;
+        }
+        else {
+            this.animacion = this.aIdleIzquierda;
+        }
     }
 
     dibujar() {

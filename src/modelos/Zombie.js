@@ -14,6 +14,7 @@ class Zombie extends Enemigo {
         this.orientacion = orientaciones.derecha;
         // Animaciones
         this.aIdleDerecha = new Animacion(imagenes.zombie_idle_derecha, this.ancho, this.alto, 9, 4);
+        this.aIdleIzquierda = new Animacion(imagenes.zombie_idle_izquierda, this.ancho, this.alto, 9, 4);
         this.animacion = this.aIdleDerecha;
     }
 
