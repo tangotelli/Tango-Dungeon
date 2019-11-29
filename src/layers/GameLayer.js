@@ -29,6 +29,15 @@ class GameLayer extends Layer {
                 this.iniciar();
             }
         }
+        //Trampas
+        for (var k = 0; k < this.suelosTrampa.length; k++) {
+            this.suelosTrampa[k].actualizar();
+        }
+        for (k = 0; k < this.suelosTrampa.length; k++) {
+            if (this.jugador.colisiona(this.suelosTrampa[k])) {
+                //
+            }
+        }
     }
 
     dibujar (){
@@ -91,7 +100,8 @@ class GameLayer extends Layer {
                 this.jugador.y = this.jugador.y - this.jugador.alto/2;
                 break;
             case "T":
-                var sueloTrampa = new SueloTrampa(x, y);
+                var multiplier =  Math.floor(Math.random() * (10 - 1) + 1);
+                var sueloTrampa = new SueloTrampa(x, y, multiplier);
                 sueloTrampa.y = sueloTrampa.y - sueloTrampa.alto/2;
                 this.suelosTrampa.push(sueloTrampa);
                 break;
