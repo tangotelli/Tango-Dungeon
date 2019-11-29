@@ -6,7 +6,8 @@ class GameLayer extends Layer {
     }
 
     iniciar() {
-        this.fondo = new Fondo(imagenes.fondo,480*0.5,320*0.5);
+        this.fondoVidas = new Fondo(imagenes.vida, 960*0.1,320*0.07);
+        this.vidas = new Texto(5,960*0.12,320*0.09 );
 
         this.suelos = [];
         this.vacios = [];
@@ -41,7 +42,6 @@ class GameLayer extends Layer {
     }
 
     dibujar (){
-        this.fondo.dibujar();
         for (var i = 0; i < this.suelos.length; i++) {
             this.suelos[i].dibujar();
         }
@@ -58,6 +58,8 @@ class GameLayer extends Layer {
             this.enemigos[i].dibujar();
         }
         this.jugador.dibujar();
+        this.fondoVidas.dibujar();
+        this.vidas.dibujar();
     }
 
     cargarMapa(ruta) {

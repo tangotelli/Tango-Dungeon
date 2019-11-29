@@ -23,6 +23,7 @@ var imagenes = {
     nigromante_idle_derecha: "res/necromancerIdleDerecha.png",
     zombie_idle_derecha: "res/zombieIdleDerecha.png",
     jugador_idle_derecha: "res/jugador1IdleDerecha.png",
+    vida: "res/vida.png",
 };
 
 var rutasImagenes = Object.values(imagenes);
