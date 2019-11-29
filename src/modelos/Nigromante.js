@@ -5,7 +5,7 @@ class Nigromante extends Enemigo {
         this.vx = 0; // velocidadX
         this.vy = 0; // velocidadY
         this.vida = 75;
-        this.daño = 50;
+        this.orientacion = orientaciones.derecha;
         // Animaciones
         this.aIdleDerecha = new Animacion(imagenes.nigromante_idle_derecha, this.ancho, this.alto, 12, 4);
         this.animacion = this.aIdleDerecha;

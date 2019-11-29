@@ -11,6 +11,7 @@ class MonstruoDelPantano extends Enemigo {
         this.hit = false;
         this.delay = 0;
         this.maxDelay = 100;
+        this.orientacion = orientaciones.derecha;
         // Animaciones
         this.aIdleDerecha = new Animacion(imagenes.swampy_idle_derecha, this.ancho, this.alto, 12, 4);
         this.animacion = this.aIdleDerecha;

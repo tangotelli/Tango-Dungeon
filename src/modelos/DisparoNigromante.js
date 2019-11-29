@@ -1,8 +1,9 @@
 class DisparoNigromante extends Modelo {
 
-    constructor(x, y) {
+    constructor(x, y, direccion) {
         super(imagenes.disparo_nigromante, x, y)
-        this.vx = 9;
+        this.vx = 9 * direccion;
+        this.daño = 50;
     }
 
     actualizar (){

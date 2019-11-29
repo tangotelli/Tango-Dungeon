@@ -4,6 +4,11 @@ const estadosTrampa = {
 }
 
 const estadosEnemigo = {
-    activo : 1,
-    pasivo : 2,
+    activo : 3,
+    pasivo : 4,
+}
+
+const orientaciones = {
+    derecha: 5,
+    izquierda: 6,
 }

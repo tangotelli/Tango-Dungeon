@@ -14,6 +14,7 @@ class GameLayer extends Layer {
         this.suelosTrampa = [];
         this.agujeros = [];
         this.enemigos = [];
+        this.disparosNigromante = [];
 
         this.cargarMapa("res/0.txt");
     }
@@ -36,6 +37,38 @@ class GameLayer extends Layer {
                         }
                         break;
                 }
+            }
+        }
+        //Disparos Nigromante
+        if (this.delayDisparoNigromante == null){
+            this.delayDisparoNigromante = 0;
+        }
+        this.delayDisparoNigromante--;
+
+        if ( this.delayDisparoNigromante < 0){
+            for (i = 0; i < this.enemigos.length; i++) {
+                if (this.enemigos[i].tipo() == "Nigromante") {
+                    var dnX = this.enemigos[i].x;
+                    var dnY = this.enemigos[i].y;
+                    var direccion;
+                    if (this.enemigos[i].orientacion == orientaciones.derecha) {
+                        direccion = 1;
+                    }
+                    else {
+                        direccion = -1;
+                    }
+                }
+            }
+            this.disparosNigromante.push(new DisparoNigromante(dnX, dnY, direccion));
+            this.delayDisparoNigromante = 100;
+        }
+        for (i = 0; i < this.disparosNigromante.length; i++) {
+            this.disparosNigromante[i].actualizar();
+        }
+        for (i = 0; i < this.disparosNigromante.length; i++) {
+            if (this.jugador.colisiona(this.disparosNigromante[i])) {
+                this.vida.valor -= this.disparosNigromante[i].daño;
+                this.disparosNigromante.splice(i, 1);
             }
         }
          //Agujeros
@@ -74,6 +107,9 @@ class GameLayer extends Layer {
         }
         for (i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].dibujar();
+        }
+        for (i = 0; i < this.disparosNigromante.length; i++) {
+            this.disparosNigromante[i].dibujar();
         }
         this.jugador.dibujar();
         this.fondoVidas.dibujar();
