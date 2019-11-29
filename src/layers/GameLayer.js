@@ -20,8 +20,23 @@ class GameLayer extends Layer {
 
     actualizar (){
         this.jugador.actualizar();
+        //Enemigos
         for (var i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].actualizar();
+        }
+        for (i = 0; i < this.enemigos.length; i++) {
+            if (this.jugador.colisiona(this.enemigos[i])) {
+                switch (this.enemigos[i].tipo()) {
+                    case "Nigromante":
+                        break;
+                    default:
+                        if (this.enemigos[i].mayHit == true) {
+                            this.vida.valor -= this.enemigos[i].daño;
+                            this.enemigos[i].hit = true;
+                        }
+                        break;
+                }
+            }
         }
          //Agujeros
         for (var j = 0; j < this.agujeros.length; j++) {

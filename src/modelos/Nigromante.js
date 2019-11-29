@@ -20,4 +20,8 @@ class Nigromante extends Enemigo {
     dibujar() {
         this.animacion.dibujar(this.x, this.y);
     }
+
+    tipo() {
+        return "Nigromante";
+    }
 }
