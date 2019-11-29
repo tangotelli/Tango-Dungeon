@@ -5,6 +5,7 @@ class SueloTrampa extends Modelo {
         this.estadoTrampa = estadosTrampa.pasiva;
         this.delay = 0;
         this.maxDelay = 100 * multiplier;
+        this.hit = false;
         // Animaciones
         this.animActiva = new Animacion(imagenes.trampa_anim, this.ancho, this.alto, 6, 4, this.finAtaque.bind(this));
         this.animPasiva = new Animacion(imagenes.suelo_trampa, this.ancho, this.alto, 10, 1);
@@ -35,5 +36,6 @@ class SueloTrampa extends Modelo {
     finAtaque() {
         this.estadoTrampa = estadosTrampa.pasiva;
         this.animacion = this.animPasiva;
+        this.hit = false;
     }
 }

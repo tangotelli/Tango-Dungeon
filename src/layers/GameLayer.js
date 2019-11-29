@@ -7,7 +7,7 @@ class GameLayer extends Layer {
 
     iniciar() {
         this.fondoVidas = new Fondo(imagenes.vida, 960*0.1,320*0.07);
-        this.vidas = new Texto(5,960*0.12,320*0.09 );
+        this.vida = new Texto(300,960*0.12,320*0.09 );
 
         this.suelos = [];
         this.vacios = [];
@@ -36,7 +36,10 @@ class GameLayer extends Layer {
         }
         for (k = 0; k < this.suelosTrampa.length; k++) {
             if (this.jugador.colisiona(this.suelosTrampa[k])) {
-                //
+                if ((this.suelosTrampa[k].estadoTrampa == estadosTrampa.activa) && (this.suelosTrampa[k].hit == false)) {
+                    this.vida.valor -= 100;
+                    this.suelosTrampa[k].hit = true;
+                }
             }
         }
     }
@@ -59,7 +62,7 @@ class GameLayer extends Layer {
         }
         this.jugador.dibujar();
         this.fondoVidas.dibujar();
-        this.vidas.dibujar();
+        this.vida.dibujar();
     }
 
     cargarMapa(ruta) {
