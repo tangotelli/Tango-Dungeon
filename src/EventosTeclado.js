@@ -9,7 +9,7 @@ function onKeyDown( event) {
     if ( posicion == -1 ) {
         teclas.push(event.keyCode);
         switch ( event.keyCode ){
-            case 32:
+            case 75:
                 controles.disparo = true;
                 break;
             case 38:
@@ -36,7 +36,7 @@ function onKeyUp( event) {
     teclas.splice( posicion, 1);
 
     switch ( event.keyCode ){
-        case 32:
+        case 75:
             controles.disparo = false;
             break;
         case 38:

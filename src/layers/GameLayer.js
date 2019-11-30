@@ -15,6 +15,7 @@ class GameLayer extends Layer {
         this.agujeros = [];
         this.enemigos = [];
         this.disparosNigromante = [];
+        this.disparosJugador = [];
 
         this.cargarMapa("res/0.txt");
     }
@@ -71,6 +72,21 @@ class GameLayer extends Layer {
                 this.disparosNigromante.splice(i, 1);
             }
         }
+        //Disparos
+        for (i = 0; i < this.disparosJugador.length; i++) {
+            this.disparosJugador[i].actualizar();
+        }
+        for (i = 0; i < this.disparosJugador.length; i++) {
+            for (var l = 0; l < this.enemigos.length; l++) {
+                if (this.disparosJugador[i].colisiona(this.enemigos[l])) {
+                    this.enemigos[l].vida -= this.disparosJugador[i].daño;
+                    if (this.enemigos[l].vida <= 0) {
+                        this.enemigos.splice(l, 1);
+                    }
+                    this.disparosJugador.splice(i, 1);
+                }
+            }
+        }
          //Agujeros
         for (var j = 0; j < this.agujeros.length; j++) {
             if (this.jugador.colisiona(this.agujeros[j])) {
@@ -110,6 +126,9 @@ class GameLayer extends Layer {
         }
         for (i = 0; i < this.disparosNigromante.length; i++) {
             this.disparosNigromante[i].dibujar();
+        }
+        for (i = 0; i < this.disparosJugador.length; i++) {
+            this.disparosJugador[i].dibujar();
         }
         this.jugador.dibujar();
         this.fondoVidas.dibujar();
@@ -224,7 +243,10 @@ class GameLayer extends Layer {
     procesarControles( ){
         // disparar
         if (  controles.disparo ){
-
+            var disparo = this.jugador.disparar();
+            if (disparo != null) {
+                this.disparosJugador.push(disparo);
+            }
         }
 
         // Eje X

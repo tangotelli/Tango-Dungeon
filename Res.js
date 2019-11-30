@@ -17,6 +17,7 @@ var imagenes = {
     monstruo_del_pantano: "res/swampy.png",
     zombie: "res/zombie.png",
     disparo_nigromante: "res/disparo_nigromante.png",
+    disparo_jugador: "res/sword_arrojadiza.png",
     demonio_idle_derecha: "res/bigDemonIdleDerecha.png",
     demonio_idle_izquierda: "res/bigDemonIdleIzquierda.png",
     ogro_idle_derecha: "res/ogreIdleDerecha.png",

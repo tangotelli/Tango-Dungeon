@@ -9,6 +9,10 @@ class Jugador extends Modelo {
         this.aIdleDerecha = new Animacion(imagenes.jugador_idle_derecha, this.ancho, this.alto, 10, 4);
         this.aIdleIzquierda = new Animacion(imagenes.jugador_idle_izquierda, this.ancho, this.alto, 10, 4);
         this.animacion = this.aIdleDerecha;
+
+        //Disparos
+        this.cadenciaDisparo = 30;
+        this.tiempoDisparo = 0;
     }
 
     actualizar() {
@@ -22,6 +26,11 @@ class Jugador extends Modelo {
         else {
             this.animacion = this.aIdleIzquierda;
         }
+
+        //Disparos
+        if ( this.tiempoDisparo > 0 ) {
+            this.tiempoDisparo--;
+        }
     }
 
     dibujar() {
@@ -34,5 +43,20 @@ class Jugador extends Modelo {
 
     moverY (direccion){
         this.vy = direccion * 3;
+    }
+
+    disparar() {
+        if (this.tiempoDisparo == 0) {
+            this.tiempoDisparo = this.cadenciaDisparo;
+            var disparo;
+            if (this.orientacion == orientaciones.derecha) {
+                disparo = new DisparoJugador(this.x, this.y, 1);
+            }
+            else {
+                disparo = new DisparoJugador(this.x, this.y, -1);
+            }
+            return disparo;
+        }
+        return null;
     }
 }
