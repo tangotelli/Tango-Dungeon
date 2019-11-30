@@ -18,6 +18,8 @@ class GameLayer extends Layer {
         this.enemigos = [];
         this.disparosNigromante = [];
         this.disparosJugador = [];
+        this.muros = [];
+        this.murosVenenosos = [];
 
         this.cargarMapa("res/0.txt");
     }
@@ -114,11 +116,29 @@ class GameLayer extends Layer {
                 }
             }
         }
+        //Muros venenosos
+        for (k = 0; k < this.murosVenenosos.length; k++) {
+            this.murosVenenosos[k].actualizar();
+        }
+        for (k = 0; k < this.murosVenenosos.length; k++) {
+            if (this.jugador.colisiona(this.murosVenenosos[k])) {
+                if ((this.murosVenenosos[k].estadoTrampa == estadosTrampa.activa) && (this.murosVenenosos[k].hit == false)) {
+                    this.vida.valor -= 5;
+                    this.murosVenenosos[k].hit = true;
+                }
+            }
+        }
     }
 
     dibujar (){
         for (var i = 0; i < this.suelos.length; i++) {
             this.suelos[i].dibujar();
+        }
+        for (i = 0; i < this.muros.length; i++) {
+            this.muros[i].dibujar();
+        }
+        for (i = 0; i < this.murosVenenosos.length; i++) {
+            this.murosVenenosos[i].dibujar();
         }
         for (i = 0; i < this.vacios.length; i++) {
             this.vacios[i].dibujar();
@@ -177,6 +197,18 @@ class GameLayer extends Layer {
                 vacio.y = vacio.y - vacio.alto/2;
                 this.vacios.push(vacio);
                 this.espacio.agregarEstaticoNoPisable(vacio);
+                break;
+            case "@":
+                var muro = new Muro(x, y);
+                muro.y = muro.y - muro.alto/2;
+                this.muros.push(muro);
+                this.espacio.agregarEstaticoNoPisable(muro);
+                break;
+            case "V":
+                var muroVenenoso = new MuroVenenoso(x, y);
+                muroVenenoso.y = muroVenenoso.y - muroVenenoso.alto/2;
+                this.murosVenenosos.push(muroVenenoso);
+                this.espacio.agregarEstaticoNoPisable(muroVenenoso);
                 break;
             case "J":
                 this.generarSuelo(x, y);
