@@ -17,8 +17,8 @@ class Jugador extends Modelo {
 
     actualizar() {
         this.animacion.actualizar();
-        this.x = this.x + this.vx;
-        this.y = this.y + this.vy;
+        //this.x = this.x + this.vx;
+        //this.y = this.y + this.vy;
 
         if (this.orientacion == orientaciones.derecha) {
             this.animacion = this.aIdleDerecha;

@@ -20,8 +20,8 @@ class Demonio extends Enemigo {
 
     actualizar() {
         this.animacion.actualizar();
-        this.x = this.x + this.vx;
-        this.y = this.y + this.vy;
+        //this.x = this.x + this.vx;
+        //this.y = this.y + this.vy;
 
         if (this.hit == true) {
             this.estado = estadosEnemigo.pasivo;

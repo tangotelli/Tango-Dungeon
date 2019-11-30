@@ -6,6 +6,8 @@ class GameLayer extends Layer {
     }
 
     iniciar() {
+        this.espacio = new Espacio(0);
+
         this.fondoVidas = new Fondo(imagenes.vida, 960*0.1,320*0.07);
         this.vida = new Texto(300,960*0.12,320*0.09 );
 
@@ -21,6 +23,7 @@ class GameLayer extends Layer {
     }
 
     actualizar (){
+        this.espacio.actualizar();
         this.jugador.actualizar();
         //Enemigos
         for (var i = 0; i < this.enemigos.length; i++) {
@@ -60,7 +63,9 @@ class GameLayer extends Layer {
                     }
                 }
             }
-            this.disparosNigromante.push(new DisparoNigromante(dnX, dnY, direccion));
+            var disparoN = new DisparoNigromante(dnX, dnY, direccion);
+            this.disparosNigromante.push(disparoN);
+            this.espacio.agregarDinamico(disparoN);
             this.delayDisparoNigromante = 100;
         }
         for (i = 0; i < this.disparosNigromante.length; i++) {
@@ -69,6 +74,7 @@ class GameLayer extends Layer {
         for (i = 0; i < this.disparosNigromante.length; i++) {
             if (this.jugador.colisiona(this.disparosNigromante[i])) {
                 this.vida.valor -= this.disparosNigromante[i].daño;
+                this.espacio.eliminarDinamico(this.disparosNigromante[i]);
                 this.disparosNigromante.splice(i, 1);
             }
         }
@@ -81,8 +87,10 @@ class GameLayer extends Layer {
                 if (this.disparosJugador[i].colisiona(this.enemigos[l])) {
                     this.enemigos[l].vida -= this.disparosJugador[i].daño;
                     if (this.enemigos[l].vida <= 0) {
+                        this.espacio.eliminarDinamico(this.enemigos[l]);
                         this.enemigos.splice(l, 1);
                     }
+                    this.espacio.eliminarDinamico(this.disparosJugador[i]);
                     this.disparosJugador.splice(i, 1);
                 }
             }
@@ -168,52 +176,61 @@ class GameLayer extends Layer {
                 var vacio = new Vacio(x, y);
                 vacio.y = vacio.y - vacio.alto/2;
                 this.vacios.push(vacio);
+                this.espacio.agregarEstaticoNoPisable(vacio);
                 break;
             case "J":
                 this.generarSuelo(x, y);
                 this.jugador = new Jugador(x, y);
                 this.jugador.y = this.jugador.y - this.jugador.alto/2;
+                this.espacio.agregarDinamico(this.jugador);
                 break;
             case "T":
                 var multiplier =  Math.floor(Math.random() * (10 - 1) + 1);
                 var sueloTrampa = new SueloTrampa(x, y, multiplier);
                 sueloTrampa.y = sueloTrampa.y - sueloTrampa.alto/2;
                 this.suelosTrampa.push(sueloTrampa);
+                this.espacio.agregarEstaticoPisable(sueloTrampa);
                 break;
             case "A":
                 var agujero = new Agujero(x, y);
                 agujero.y = agujero.y - agujero.alto/2;
                 this.agujeros.push(agujero);
+                this.espacio.agregarEstaticoPisable(agujero);
                 break;
             case "D":
                 this.generarSuelo(x, y);
                 var demonio = new Demonio(x, y);
                 demonio.y = demonio.y - demonio.alto/2;
                 this.enemigos.push(demonio);
+                this.espacio.agregarDinamico(demonio);
                 break;
             case "O":
                 this.generarSuelo(x, y);
                 var ogro = new Ogro(x, y);
                 ogro.y = ogro.y - ogro.alto/2;
                 this.enemigos.push(ogro);
+                this.espacio.agregarDinamico(ogro);
                 break;
             case "N":
                 this.generarSuelo(x, y);
                 var nigromante = new Nigromante(x, y);
                 nigromante.y = nigromante.y - nigromante.alto/2;
                 this.enemigos.push(nigromante);
+                this.espacio.agregarDinamico(nigromante);
                 break;
             case "M":
                 this.generarSuelo(x, y);
                 var monstruo = new MonstruoDelPantano(x, y);
                 monstruo.y = monstruo.y - monstruo.alto/2;
                 this.enemigos.push(monstruo);
+                this.espacio.agregarDinamico(monstruo);
                 break;
             case "Z":
                 this.generarSuelo(x, y);
                 var zombie = new Zombie(x, y);
                 zombie.y = zombie.y - zombie.alto/2;
                 this.enemigos.push(zombie);
+                this.espacio.agregarDinamico(zombie);
                 break;
         }
     }
@@ -238,6 +255,7 @@ class GameLayer extends Layer {
         }
         suelo.y = suelo.y - suelo.alto/2;
         this.suelos.push(suelo);
+        this.espacio.agregarEstaticoPisable(suelo);
     }
 
     procesarControles( ){
@@ -246,6 +264,7 @@ class GameLayer extends Layer {
             var disparo = this.jugador.disparar();
             if (disparo != null) {
                 this.disparosJugador.push(disparo);
+                this.espacio.agregarDinamico(disparo);
             }
         }
 

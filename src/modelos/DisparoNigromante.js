@@ -7,7 +7,7 @@ class DisparoNigromante extends Modelo {
     }
 
     actualizar (){
-        this.x = this.x + this.vx;
+        //this.x = this.x + this.vx;
     }
 
 }
