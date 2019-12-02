@@ -18,6 +18,12 @@ class Nigromante extends Enemigo {
         //this.x = this.x + this.vx;
         //this.y = this.y + this.vy;
 
+        if (this.orientacion == orientaciones.derecha) {
+            this.animacion = this.aIdleDerecha;
+        } else {
+            this.animacion = this.aIdleIzquierda;
+        }
+
         this.texto.valor = this.vida;
     }
 
@@ -27,5 +33,13 @@ class Nigromante extends Enemigo {
 
     tipo() {
         return "Nigromante";
+    }
+
+    rotar(posicion) {
+        if (posicion < this.x) {
+            this.orientacion = orientaciones.izquierda;
+        } else {
+            this.orientacion = orientaciones.derecha;
+        }
     }
 }
