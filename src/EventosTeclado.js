@@ -24,6 +24,9 @@ function onKeyDown( event) {
             case 37:
                 controles.moverX = -1;
                 break;
+            case 32:
+                controles.fuente = true;
+                break;
         }
 
     }
@@ -58,6 +61,9 @@ function onKeyUp( event) {
             if ( controles.moverX == -1 ){
                 controles.moverX = 0;
             }
+            break;
+        case 32:
+            controles.fuente = false;
             break;
     }
 }

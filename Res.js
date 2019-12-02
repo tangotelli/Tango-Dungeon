@@ -14,6 +14,8 @@ var imagenes = {
     muro: "res/wall.png",
     agujero_muro: "res/wall_hole.png",
     pantano_muro: "res/wall_goo.png",
+    fuente: "res/fountain.png",
+    fuente_fluyendo: "res/fountainFlow.png",
     demonio: "res/big_demon.png",
     nigromante: "res/necromancer.png",
     ogro: "res/ogre.png",

@@ -20,8 +20,10 @@ class GameLayer extends Layer {
         this.disparosJugador = [];
         this.muros = [];
         this.murosVenenosos = [];
+        this.muertos = 0;
 
         this.cargarMapa("res/0.txt");
+        this.totalEnemigos = this.enemigos.length;
     }
 
     actualizar (){
@@ -105,6 +107,7 @@ class GameLayer extends Layer {
                     if (this.enemigos[l].vida <= 0) {
                         this.espacio.eliminarDinamico(this.enemigos[l]);
                         this.enemigos.splice(l, 1);
+                        this.muertos += 1;
                     }
                     this.espacio.eliminarDinamico(this.disparosJugador[i]);
                     this.disparosJugador.splice(i, 1);
@@ -156,6 +159,20 @@ class GameLayer extends Layer {
                 }
             }
         }
+        //Fuente
+        this.fuente.actualizar();
+        if (this.muertos == this.totalEnemigos) {
+            this.fuente.activar();
+        }
+        if (this.jugador.colisiona(this.fuente)) {
+            this.fuente.hit = true;
+        }
+        else {
+            this.fuente.hit = false;
+        }
+        console.log(this.fuente.hit == true);
+        console.log(this.fuente.estado);
+        console.log(this.muertos == this.totalEnemigos);
     }
 
     dibujar (){
@@ -168,6 +185,7 @@ class GameLayer extends Layer {
         for (i = 0; i < this.murosVenenosos.length; i++) {
             this.murosVenenosos[i].dibujar();
         }
+        this.fuente.dibujar();
         for (i = 0; i < this.vacios.length; i++) {
             this.vacios[i].dibujar();
         }
@@ -231,6 +249,11 @@ class GameLayer extends Layer {
                 muro.y = muro.y - muro.alto/2;
                 this.muros.push(muro);
                 this.espacio.agregarEstaticoNoPisable(muro);
+                break;
+            case "F":
+                this.fuente = new Fuente(x, y);
+                this.fuente.y = this.fuente.y - this.fuente.alto/2;
+                this.espacio.agregarEstaticoNoPisable(this.fuente);
                 break;
             case "V":
                 var muroVenenoso = new MuroVenenoso(x, y);
@@ -325,6 +348,14 @@ class GameLayer extends Layer {
             if (disparo != null) {
                 this.disparosJugador.push(disparo);
                 this.espacio.agregarDinamico(disparo);
+            }
+        }
+
+        //Fuente
+        if (controles.fuente) {
+            if ((this.fuente.hit == true) && (this.fuente.estado == estadosTrampa.activa)) {
+                //CAMBIAR SALA
+                this.iniciar();
             }
         }
 
