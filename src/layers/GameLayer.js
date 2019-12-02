@@ -280,11 +280,11 @@ class GameLayer extends Layer {
                 this.jugador = new Jugador(x, y);
                 this.jugador.y = this.jugador.y - this.jugador.alto/2;
                 this.espacio.agregarDinamico(this.jugador);
-                //console.log(this.jugador.x, this.jugador.y);
+                this.espacio.jugador = this.jugador;
                 this.espada = new Espada(x + this.jugador.ancho/2, y - this.jugador.alto/3);
                 this.espada.y = this.espada.y - this.espada.alto/2;
                 this.espacio.agregarDinamico(this.espada);
-                //console.log(this.espada.x, this.espada.y);
+                this.espacio.espada = this.espada;
                 break;
             case "T":
                 var multiplier =  Math.floor(Math.random() * (10 - 1) + 1);

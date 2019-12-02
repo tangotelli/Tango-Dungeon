@@ -5,6 +5,12 @@ class Espacio {
         this.dinamicos = [];
         this.estaticosPisables = [];
         this.estaticosNoPisables = [];
+        this.jugador = null;
+        this.espada = null;
+        this.movimientoPosibleJugadorDerecha = 0;
+        this.movimientoPosibleJugadorIzquierda = 0;
+        this.movimientoPosibleJugadorArriba = 0;
+        this.movimientoPosibleJugadorAbajo = 0;
     }
 
     agregarDinamico(modelo){
@@ -78,6 +84,16 @@ class Espacio {
                     }
                 }
             }
+            //Comprobar jugador
+            if (this.dinamicos[i] == this.jugador) {
+                this.movimientoPosibleJugadorDerecha = movimientoPosible;
+            }
+            //Comprobar espada
+            if (this.dinamicos[i] == this.espada) {
+                if (this.movimientoPosibleJugadorDerecha != null) {
+                    movimientoPosible = this.movimientoPosibleJugadorDerecha;
+                }
+            }
             //Ya se han comprobado todos los estáticos
             this.dinamicos[i].x = this.dinamicos[i].x + movimientoPosible;
             this.dinamicos[i].vx = movimientoPosible;
@@ -103,6 +119,16 @@ class Espacio {
                     if (movimientoPosible <= derechaEstatico - izquierdaDinamico ) {
                         movimientoPosible = derechaEstatico - izquierdaDinamico;
                     }
+                }
+            }
+            //Comprobar jugador
+            if (this.dinamicos[i] == this.jugador) {
+                this.movimientoPosibleJugadorIzquierda = movimientoPosible;
+            }
+            //Comprobar espada
+            if (this.dinamicos[i] == this.espada) {
+                if (this.movimientoPosibleJugadorIzquierda != null) {
+                    movimientoPosible = this.movimientoPosibleJugadorIzquierda;
                 }
             }
             //Ya se han comprobado todos los estáticos
@@ -134,6 +160,16 @@ class Espacio {
                     }
                 }
             }
+            //Comprobar jugador
+            if (this.dinamicos[i] == this.jugador) {
+                this.movimientoPosibleJugadorAbajo = movimientoPosible;
+            }
+            //Comprobar espada
+            if (this.dinamicos[i] == this.espada) {
+                if (this.movimientoPosibleJugadorAbajo != null) {
+                    movimientoPosible = this.movimientoPosibleJugadorAbajo;
+                }
+            }
             //Ya se han comprobado todos los estáticos
             this.dinamicos[i].y = this.dinamicos[i].y + movimientoPosible;
             this.dinamicos[i].vy = movimientoPosible;
@@ -161,6 +197,16 @@ class Espacio {
                     if (movimientoPosible <= abajoEstatico - arribaDinamico ){
                         movimientoPosible = abajoEstatico - arribaDinamico ;
                     }
+                }
+            }
+            //Comprobar jugador
+            if (this.dinamicos[i] == this.jugador) {
+                this.movimientoPosibleJugadorArriba = movimientoPosible;
+            }
+            //Comprobar espada
+            if (this.dinamicos[i] == this.espada) {
+                if (this.movimientoPosibleJugadorArriba != null) {
+                    movimientoPosible = this.movimientoPosibleJugadorArriba;
                 }
             }
             //Ya se han comprobado todos los estáticos
