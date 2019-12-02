@@ -4,6 +4,8 @@ class MicroTexto {
         this.valor = valor;
         this.x = x;
         this.y = y;
+        this.vx = 0;
+        this.vy = 0;
     }
 
     dibujar (){
@@ -11,6 +13,13 @@ class MicroTexto {
         contexto.fillStyle = "white";
         contexto.textAlign = "center";
         contexto.fillText(this.valor,this.x,this.y);
+    }
+
+    desplazar(vxPadre, vyPadre) {
+        this.vx = vxPadre;
+        this.vy = vyPadre;
+        this.x = this.x + this.vx;
+        this.y = this.y + this.vy;
     }
 
 }

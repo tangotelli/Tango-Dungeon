@@ -4,6 +4,7 @@ class Zombie extends Enemigo {
         super(imagenes.zombie, x, y);
         this.vx = 0; // velocidadX
         this.vy = 0; // velocidadY
+        this.vxObjetivo = 1;
         this.vida = 100;
         this.texto = new MicroTexto(this.vida, this.x, this.y - this.alto);
         this.daño = 20;
@@ -23,8 +24,14 @@ class Zombie extends Enemigo {
         this.animacion.actualizar();
         //this.x = this.x + this.vx;
         //this.y = this.y + this.vy;
+        //Rebote
+        if (this.vx == 0) {
+            this.vxObjetivo *= -1;
+            this.vx = this.vxObjetivo;
+        }
 
         this.texto.valor = this.vida;
+        this.texto.desplazar(this.vx, this.vy);
 
         if (this.hit == true) {
             this.estado = estadosEnemigo.pasivo;
