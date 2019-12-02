@@ -28,6 +28,17 @@ class Zombie extends Enemigo {
         if (this.vx == 0) {
             this.vxObjetivo *= -1;
             this.vx = this.vxObjetivo;
+            if (this.orientacion == orientaciones.derecha) {
+                this.orientacion = orientaciones.izquierda;
+            } else {
+                this.orientacion = orientaciones.derecha;
+            }
+        }
+
+        if (this.orientacion == orientaciones.derecha) {
+            this.animacion = this.aIdleDerecha;
+        } else {
+            this.animacion = this.aIdleIzquierda;
         }
 
         this.texto.valor = this.vida;

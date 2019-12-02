@@ -54,6 +54,9 @@ class GameLayer extends Layer {
                 case "Nigromante":
                     this.enemigos[i].rotar(this.jugador.x);
                     break;
+                case "Ogro":
+                    this.enemigos[i].rotar(this.jugador.x);
+                    break;
             }
         }
         for (i = 0; i < this.enemigos.length; i++) {
