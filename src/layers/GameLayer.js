@@ -29,8 +29,23 @@ class GameLayer extends Layer {
     actualizar (){
         this.espacio.actualizar();
         this.jugador.actualizar();
-        //Enemigos
+        //Espada
+        this.espada.actualizar();
         for (var i = 0; i < this.enemigos.length; i++) {
+            if (this.enemigos[i].colisiona(this.espada)) {
+                if ((this.espada.estado == estadosEspada.atacando) && (this.espada.mayHit == true)) {
+                    this.espada.hit = true;
+                    this.enemigos[i].vida -= this.espada.daño;
+                    if (this.enemigos[i].vida <= 0) {
+                        this.espacio.eliminarDinamico(this.enemigos[i]);
+                        this.enemigos.splice(i, 1);
+                        this.muertos += 1;
+                    }
+                }
+            }
+        }
+        //Enemigos
+        for (i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].actualizar();
         }
         for (i = 0; i < this.enemigos.length; i++) {
@@ -40,7 +55,7 @@ class GameLayer extends Layer {
                         break;
                     default:
                         if (this.enemigos[i].mayHit == true) {
-                            this.vida.valor -= this.enemigos[i].daño;
+                            this.vida.valor -= this.enemigos[i].daño ;
                             this.enemigos[i].hit = true;
                         }
                         break;
@@ -170,9 +185,6 @@ class GameLayer extends Layer {
         else {
             this.fuente.hit = false;
         }
-        console.log(this.fuente.hit == true);
-        console.log(this.fuente.estado);
-        console.log(this.muertos == this.totalEnemigos);
     }
 
     dibujar (){
@@ -197,6 +209,7 @@ class GameLayer extends Layer {
         }
         for (i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].dibujar();
+            this.enemigos[i].texto.dibujar();
         }
         for (i = 0; i < this.disparosNigromante.length; i++) {
             this.disparosNigromante[i].dibujar();
@@ -204,6 +217,7 @@ class GameLayer extends Layer {
         for (i = 0; i < this.disparosJugador.length; i++) {
             this.disparosJugador[i].dibujar();
         }
+        this.espada.dibujar();
         this.jugador.dibujar();
         this.fondoVidas.dibujar();
         this.vida.dibujar();
@@ -266,6 +280,11 @@ class GameLayer extends Layer {
                 this.jugador = new Jugador(x, y);
                 this.jugador.y = this.jugador.y - this.jugador.alto/2;
                 this.espacio.agregarDinamico(this.jugador);
+                //console.log(this.jugador.x, this.jugador.y);
+                this.espada = new Espada(x + this.jugador.ancho/2, y - this.jugador.alto/3);
+                this.espada.y = this.espada.y - this.espada.alto/2;
+                this.espacio.agregarDinamico(this.espada);
+                //console.log(this.espada.x, this.espada.y);
                 break;
             case "T":
                 var multiplier =  Math.floor(Math.random() * (10 - 1) + 1);
@@ -342,13 +361,18 @@ class GameLayer extends Layer {
     }
 
     procesarControles( ){
-        // disparar
-        if (  controles.disparo ){
+        //Disparo
+        if (controles.disparo) {
             var disparo = this.jugador.disparar();
             if (disparo != null) {
                 this.disparosJugador.push(disparo);
                 this.espacio.agregarDinamico(disparo);
             }
+        }
+
+        //Golpe
+        if (controles.golpe) {
+            this.espada.atacar();
         }
 
         //Fuente
@@ -363,22 +387,30 @@ class GameLayer extends Layer {
         if ( controles.moverX > 0 ){
             this.jugador.moverX(1);
             this.jugador.orientacion = orientaciones.derecha;
+            this.espada.moverX(1);
+            this.espada.orientacion = orientaciones.derecha;
         }else if ( controles.moverX < 0){
             this.jugador.moverX(-1);
             this.jugador.orientacion = orientaciones.izquierda;
+            this.espada.moverX(-1);
+            this.espada.orientacion = orientaciones.izquierda;
         } else {
             this.jugador.moverX(0);
+            this.espada.moverX(0);
         }
 
         // Eje Y
         if ( controles.moverY > 0 ){
             this.jugador.moverY(-1);
+            this.espada.moverY(-1);
 
         } else if ( controles.moverY < 0 ){
             this.jugador.moverY(1);
+            this.espada.moverY(1);
 
         } else {
             this.jugador.moverY(0);
+            this.espada.moverY(0);
         }
 
     }

@@ -5,6 +5,7 @@ class Nigromante extends Enemigo {
         this.vx = 0; // velocidadX
         this.vy = 0; // velocidadY
         this.vida = 75;
+        this.texto = new MicroTexto(this.vida, this.x, this.y - this.alto);
         this.orientacion = orientaciones.derecha;
         // Animaciones
         this.aIdleDerecha = new Animacion(imagenes.nigromante_idle_derecha, this.ancho, this.alto, 12, 4);
@@ -16,6 +17,8 @@ class Nigromante extends Enemigo {
         this.animacion.actualizar();
         //this.x = this.x + this.vx;
         //this.y = this.y + this.vy;
+
+        this.texto.valor = this.vida;
     }
 
     dibujar() {

@@ -5,6 +5,7 @@ class Ogro extends Enemigo {
         this.vx = 0; // velocidadX
         this.vy = 0; // velocidadY
         this.vida = 150;
+        this.texto = new MicroTexto(this.vida, this.x, this.y - this.alto);
         this.daño = 40;
         this.estado = estadosEnemigo.activo;
         this.mayHit = true;
@@ -22,6 +23,8 @@ class Ogro extends Enemigo {
         this.animacion.actualizar();
         //this.x = this.x + this.vx;
         //this.y = this.y + this.vy;
+
+        this.texto.valor = this.vida;
 
         if (this.hit == true) {
             this.estado = estadosEnemigo.pasivo;

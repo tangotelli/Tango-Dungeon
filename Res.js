@@ -36,6 +36,9 @@ var imagenes = {
     jugador_idle_derecha: "res/jugador1IdleDerecha.png",
     jugador_idle_izquierda: "res/jugador1IdleIzquierda.png",
     vida: "res/vida.png",
+    espada: "res/espada.png",
+    espada_ataque_derecha: "res/espadaAtaqueDerecha.png",
+    espada_ataque_izquierda: "res/espadaAtaqueIzquierda.png",
 };
 
 var rutasImagenes = Object.values(imagenes);

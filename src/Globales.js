@@ -8,6 +8,12 @@ const estadosEnemigo = {
     pasivo : 4,
 }
 
+const estadosEspada = {
+    activa : 1,
+    pasiva : 2,
+    atacando: 3,
+}
+
 const orientaciones = {
     derecha: 5,
     izquierda: 6,

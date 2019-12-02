@@ -5,6 +5,7 @@ class MonstruoDelPantano extends Enemigo {
         this.vx = 0; // velocidadX
         this.vy = 0; // velocidadY
         this.vida = 75;
+        this.texto = new MicroTexto(this.vida, this.x, this.y - this.alto);
         this.daño = 10;
         this.estado = estadosEnemigo.activo;
         this.mayHit = true;
@@ -22,6 +23,8 @@ class MonstruoDelPantano extends Enemigo {
         this.animacion.actualizar();
         //this.x = this.x + this.vx;
         //this.y = this.y + this.vy;
+
+        this.texto.valor = this.vida;
 
         if (this.hit == true) {
             this.estado = estadosEnemigo.pasivo;
