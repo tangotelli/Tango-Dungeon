@@ -57,6 +57,10 @@ class GameLayer extends Layer {
                 case "Ogro":
                     this.enemigos[i].rotar(this.jugador.x);
                     break;
+                case "Demonio":
+                    this.enemigos[i].rotar(this.jugador.x);
+                    this.enemigos[i].perseguir(this.jugador.x, this.jugador.y);
+                    break;
             }
         }
         for (i = 0; i < this.enemigos.length; i++) {
