@@ -80,6 +80,20 @@ class GameLayer extends Layer {
                 this.disparosNigromante.splice(i, 1);
             }
         }
+        for (i = 0; i < this.disparosNigromante.length; i++) {
+            for (var m = 0; m < this.muros.length; m++) {
+                if (this.disparosNigromante[i].colisiona(this.muros[m])) {
+                    this.espacio.eliminarDinamico(this.disparosNigromante[i]);
+                    this.disparosNigromante.splice(i, 1);
+                }
+            }
+            for (m = 0; m < this.murosVenenosos.length; m++) {
+                if (this.disparosNigromante[i].colisiona(this.murosVenenosos[m])) {
+                    this.espacio.eliminarDinamico(this.disparosNigromante[i]);
+                    this.disparosNigromante.splice(i, 1);
+                }
+            }
+        }
         //Disparos
         for (i = 0; i < this.disparosJugador.length; i++) {
             this.disparosJugador[i].actualizar();
@@ -92,6 +106,20 @@ class GameLayer extends Layer {
                         this.espacio.eliminarDinamico(this.enemigos[l]);
                         this.enemigos.splice(l, 1);
                     }
+                    this.espacio.eliminarDinamico(this.disparosJugador[i]);
+                    this.disparosJugador.splice(i, 1);
+                }
+            }
+        }
+        for (i = 0; i < this.disparosJugador.length; i++) {
+            for (var m = 0; m < this.muros.length; m++) {
+                if (this.disparosJugador[i].colisiona(this.muros[m])) {
+                    this.espacio.eliminarDinamico(this.disparosJugador[i]);
+                    this.disparosJugador.splice(i, 1);
+                }
+            }
+            for (m = 0; m < this.murosVenenosos.length; m++) {
+                if (this.disparosJugador[i].colisiona(this.murosVenenosos[m])) {
                     this.espacio.eliminarDinamico(this.disparosJugador[i]);
                     this.disparosJugador.splice(i, 1);
                 }
