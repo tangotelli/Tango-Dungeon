@@ -47,6 +47,11 @@ class GameLayer extends Layer {
         //Enemigos
         for (i = 0; i < this.enemigos.length; i++) {
             this.enemigos[i].actualizar();
+            switch (this.enemigos[i].tipo()) {
+                case "MonstruoDelPantano":
+                    this.enemigos[i].rotar(this.jugador.x);
+                    break;
+            }
         }
         for (i = 0; i < this.enemigos.length; i++) {
             if (this.jugador.colisiona(this.enemigos[i])) {

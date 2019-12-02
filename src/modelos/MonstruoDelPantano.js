@@ -24,6 +24,12 @@ class MonstruoDelPantano extends Enemigo {
         //this.x = this.x + this.vx;
         //this.y = this.y + this.vy;
 
+        if (this.orientacion == orientaciones.derecha) {
+            this.animacion = this.aIdleDerecha;
+        } else {
+            this.animacion = this.aIdleIzquierda;
+        }
+
         this.texto.valor = this.vida;
 
         if (this.hit == true) {
@@ -52,5 +58,13 @@ class MonstruoDelPantano extends Enemigo {
 
     tipo() {
         return "MonstruoDelPantano";
+    }
+
+    rotar(posicion) {
+        if (posicion < this.x) {
+            this.orientacion = orientaciones.izquierda;
+        } else {
+            this.orientacion = orientaciones.derecha;
+        }
     }
 }
