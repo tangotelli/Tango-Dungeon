@@ -29,11 +29,7 @@ class GameLayer extends Layer {
     actualizar (){
         this.espacio.actualizar();
         this.jugador.actualizar();
-        if (this.vida.valor <= 0) {
-            //IMPRIMIR MENSAJE GAME OVER
-            this.iniciar();
-        }
-        //Espada
+         //Espada
         this.espada.actualizar();
         for (var i = 0; i < this.enemigos.length; i++) {
             if (this.enemigos[i].colisiona(this.espada)) {
@@ -76,6 +72,17 @@ class GameLayer extends Layer {
                         if (this.enemigos[i].mayHit == true) {
                             this.vida.valor -= this.enemigos[i].daño ;
                             this.enemigos[i].hit = true;
+                            if (this.vida.valor <= 0) {
+                                if (this.enemigos[i].tipo() == "Demonio") {
+                                    deathLayer.cambiarMensaje(3);
+                                    layer = deathLayer;
+                                    controles.continuar = false;
+                                } else {
+                                    deathLayer.cambiarMensaje(2);
+                                    layer = deathLayer;
+                                    controles.continuar = false;
+                                }
+                            }
                         }
                         break;
                 }
@@ -114,6 +121,11 @@ class GameLayer extends Layer {
                 this.vida.valor -= this.disparosNigromante[i].daño;
                 this.espacio.eliminarDinamico(this.disparosNigromante[i]);
                 this.disparosNigromante.splice(i, 1);
+                if (this.vida.valor <= 0) {
+                    deathLayer.cambiarMensaje(2);
+                    layer = deathLayer;
+                    controles.continuar = false;
+                }
             }
         }
         for (i = 0; i < this.disparosNigromante.length; i++) {
@@ -165,8 +177,9 @@ class GameLayer extends Layer {
          //Agujeros
         for (var j = 0; j < this.agujeros.length; j++) {
             if (this.jugador.colisiona(this.agujeros[j])) {
-                // IMPRIMIR MENSAJE MUERTE POR CAIDA
-                this.iniciar();
+                deathLayer.cambiarMensaje(1);
+                layer = deathLayer;
+                controles.continuar = false;
             }
         }
         //Trampas
@@ -178,6 +191,11 @@ class GameLayer extends Layer {
                 if ((this.suelosTrampa[k].estadoTrampa == estadosTrampa.activa) && (this.suelosTrampa[k].hit == false)) {
                     this.vida.valor -= 100;
                     this.suelosTrampa[k].hit = true;
+                    if (this.vida.valor <= 0) {
+                        deathLayer.cambiarMensaje(4);
+                        layer = deathLayer;
+                        controles.continuar = false;
+                    }
                 }
             }
         }
@@ -190,6 +208,11 @@ class GameLayer extends Layer {
                 if ((this.murosVenenosos[k].estadoTrampa == estadosTrampa.activa) && (this.murosVenenosos[k].hit == false)) {
                     this.vida.valor -= 5;
                     this.murosVenenosos[k].hit = true;
+                    if (this.vida.valor <= 0) {
+                        deathLayer.cambiarMensaje(4);
+                        layer = deathLayer;
+                        controles.continuar = false;
+                    }
                 }
             }
         }

@@ -41,7 +41,7 @@ var imagenes = {
     espada_ataque_izquierda: "res/espadaAtaqueIzquierda.png",
     menu_inicio: "res/mensaje_inicial.png",
     muerte_agujero: "res/mensaje_agujero.png",
-    muerte_esbirro: "res/mensaje_muerte_agujero.png",
+    muerte_esbirro: "res/mensaje_muerte_esbirro.png",
     muerte_tarno: "res/mensaje_muerte_tarno.png",
     muerte_trampa: "res/mensaje_muerte_trampa.png",
 };
