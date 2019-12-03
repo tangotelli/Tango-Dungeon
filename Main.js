@@ -4,6 +4,8 @@ var contexto = canvas.getContext("2d");
 var escaladoMinimo = 1;
 
 // Capas
+var layer;
+var menuLayer;
 var gameLayer;
 
 // Controles
@@ -12,16 +14,21 @@ var controles = {};
 // Inicio capas y bucle del juego
 function iniciarJuego() {
     gameLayer = new GameLayer();
+    menuLayer = new MenuLayer();
+    layer = menuLayer;
+
     setInterval(loop, 1000 / 30);
 }
 
 iniciarJuego();
 
 function loop(){
-    console.log("loop - ")
-    gameLayer.actualizar();
-    gameLayer.procesarControles();
-    gameLayer.dibujar();
+    console.log("loop - ");
+
+    layer.actualizar();
+    layer.procesarControles();
+    layer.dibujar();
+    //actualizarPulsaciones();
 }
 
 

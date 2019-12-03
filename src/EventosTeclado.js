@@ -29,6 +29,7 @@ function onKeyDown( event) {
                 break;
             case 32:
                 controles.fuente = true;
+                controles.continuar = true;
                 break;
         }
 
@@ -70,6 +71,7 @@ function onKeyUp( event) {
             break;
         case 32:
             controles.fuente = false;
+            controles.continuar = false;
             break;
     }
 }
