@@ -29,6 +29,10 @@ class GameLayer extends Layer {
     actualizar (){
         this.espacio.actualizar();
         this.jugador.actualizar();
+        if (this.vida.valor <= 0) {
+            //IMPRIMIR MENSAJE GAME OVER
+            this.iniciar();
+        }
         //Espada
         this.espada.actualizar();
         for (var i = 0; i < this.enemigos.length; i++) {
