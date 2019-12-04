@@ -24,6 +24,7 @@ class GameLayer extends Layer {
         this.disparosJugador = [];
         this.muros = [];
         this.murosVenenosos = [];
+        this.cofres = [];
         this.muertos = 0;
 
         this.cargarMapa("res/" + nivel + ".txt");
@@ -142,6 +143,12 @@ class GameLayer extends Layer {
                     this.disparosNigromante.splice(i, 1);
                 }
             }
+            for (m = 0; m < this.cofres.length; m++) {
+                if (this.disparosNigromante[i].colisiona(this.cofres[m])) {
+                    this.espacio.eliminarDinamico(this.disparosNigromante[i]);
+                    this.disparosNigromante.splice(i, 1);
+                }
+            }
             if (this.disparosNigromante[i].colisiona(this.fuente)) {
                 this.espacio.eliminarDinamico(this.disparosNigromante[i]);
                 this.disparosNigromante.splice(i, 1);
@@ -174,6 +181,12 @@ class GameLayer extends Layer {
             }
             for (m = 0; m < this.murosVenenosos.length; m++) {
                 if (this.disparosJugador[i].colisiona(this.murosVenenosos[m])) {
+                    this.espacio.eliminarDinamico(this.disparosJugador[i]);
+                    this.disparosJugador.splice(i, 1);
+                }
+            }
+            for (m = 0; m < this.cofres.length; m++) {
+                if (this.disparosJugador[i].colisiona(this.cofres[m])) {
                     this.espacio.eliminarDinamico(this.disparosJugador[i]);
                     this.disparosJugador.splice(i, 1);
                 }
@@ -236,6 +249,14 @@ class GameLayer extends Layer {
         else {
             this.fuente.hit = false;
         }
+        //Cofres
+        for (var c = 0; c < this.cofres.length; c++) {
+            if (this.jugador.colisiona(this.cofres[c])) {
+                this.cofres[c].hit = true;
+            } else {
+                this.cofres[c].hit = false;
+            }
+        }
     }
 
     dibujar (){
@@ -249,6 +270,9 @@ class GameLayer extends Layer {
             this.murosVenenosos[i].dibujar();
         }
         this.fuente.dibujar();
+        for (i = 0; i < this.cofres.length; i++) {
+            this.cofres[i].dibujar();
+        }
         for (i = 0; i < this.vacios.length; i++) {
             this.vacios[i].dibujar();
         }
@@ -350,6 +374,13 @@ class GameLayer extends Layer {
                 this.agujeros.push(agujero);
                 this.espacio.agregarEstaticoPisable(agujero);
                 break;
+            case "C":
+                this.generarSuelo(x, y);
+                var cofre = new Cofre(x, y);
+                cofre.y = cofre.y - cofre.alto/2;
+                this.cofres.push(cofre);
+                this.espacio.agregarEstaticoNoPisable(cofre);
+                break;
             case "D":
                 this.generarSuelo(x, y);
                 var demonio = new Demonio(x, y);
@@ -443,6 +474,20 @@ class GameLayer extends Layer {
                     pauseLayer.cambiarMensaje(5);
                     layer = pauseLayer;
                     controles.continuar = false;
+                }
+            }
+        }
+
+        //Cofre
+        if (controles.cofre) {
+            for (var i = 0; i < this.cofres.length; i++) {
+                if (this.cofres[i].hit) {
+                    console.log("Abriendo cofre");
+                    if (!this.cofres[i].vacio) {
+                        console.log("Cofre abierto");
+                        var aux = this.cofres[i].abrir(this.vida.valor);
+                        this.vida.valor = aux;
+                    }
                 }
             }
         }

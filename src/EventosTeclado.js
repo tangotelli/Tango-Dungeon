@@ -29,6 +29,7 @@ function onKeyDown( event) {
                 break;
             case 32:
                 controles.fuente = true;
+                controles.cofre = true;
                 controles.continuar = true;
                 break;
         }
@@ -71,6 +72,7 @@ function onKeyUp( event) {
             break;
         case 32:
             controles.fuente = false;
+            controles.cofre = false;
             controles.continuar = false;
             break;
     }

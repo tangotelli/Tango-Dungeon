@@ -11,6 +11,7 @@ var imagenes = {
     vacio: "res/vacio.png",
     jugador: "res/jugador1.png",
     agujero: "res/hole.png",
+    cofre: "res/chest.png",
     muro: "res/wall.png",
     agujero_muro: "res/wall_hole.png",
     pantano_muro: "res/wall_goo.png",
