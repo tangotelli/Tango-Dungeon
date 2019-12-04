@@ -21,3 +21,9 @@ const orientaciones = {
 
 let nivel = 0;
 let nivelMax = 3;
+
+var pulsaciones = [];
+
+var tipoPulsacion = {};
+tipoPulsacion.inicio = 1;
+tipoPulsacion.mantener = 2;
