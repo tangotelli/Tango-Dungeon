@@ -1,4 +1,4 @@
-class DeathLayer extends Layer {
+class PauseLayer extends Layer {
 
     constructor() {
         super();
@@ -36,6 +36,12 @@ class DeathLayer extends Layer {
                 break;
             case 4:
                 this.mensaje = new Fondo(imagenes.muerte_trampa, 960 * 0.15, 480 * 0.15);
+                break;
+            case 5:
+                this.mensaje = new Fondo(imagenes.siguiente_sala, 960 * 0.15, 480 * 0.15);
+                break;
+            case 6:
+                this.mensaje = new Fondo(imagenes.sala_final, 960 * 0.15, 480 * 0.15);
                 break;
         }
     }

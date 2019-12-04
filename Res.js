@@ -44,6 +44,8 @@ var imagenes = {
     muerte_esbirro: "res/mensaje_muerte_esbirro.png",
     muerte_tarno: "res/mensaje_muerte_tarno.png",
     muerte_trampa: "res/mensaje_muerte_trampa.png",
+    siguiente_sala: "res/mensaje_siguiente_sala.png",
+    sala_final: "res/mensaje_sala_final.png",
 };
 
 var rutasImagenes = Object.values(imagenes);

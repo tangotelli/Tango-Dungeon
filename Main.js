@@ -7,7 +7,7 @@ var escaladoMinimo = 1;
 var layer;
 var menuLayer;
 var gameLayer;
-var deathLayer;
+var pauseLayer;
 
 // Controles
 var controles = {};
@@ -16,7 +16,7 @@ var controles = {};
 function iniciarJuego() {
     gameLayer = new GameLayer();
     menuLayer = new MenuLayer();
-    deathLayer = new DeathLayer();
+    pauseLayer = new PauseLayer();
     layer = menuLayer;
 
     setInterval(loop, 1000 / 30);

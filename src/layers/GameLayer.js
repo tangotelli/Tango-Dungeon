@@ -74,12 +74,12 @@ class GameLayer extends Layer {
                             this.enemigos[i].hit = true;
                             if (this.vida.valor <= 0) {
                                 if (this.enemigos[i].tipo() == "Demonio") {
-                                    deathLayer.cambiarMensaje(3);
-                                    layer = deathLayer;
+                                    pauseLayer.cambiarMensaje(3);
+                                    layer = pauseLayer;
                                     controles.continuar = false;
                                 } else {
-                                    deathLayer.cambiarMensaje(2);
-                                    layer = deathLayer;
+                                    pauseLayer.cambiarMensaje(2);
+                                    layer = pauseLayer;
                                     controles.continuar = false;
                                 }
                             }
@@ -122,8 +122,8 @@ class GameLayer extends Layer {
                 this.espacio.eliminarDinamico(this.disparosNigromante[i]);
                 this.disparosNigromante.splice(i, 1);
                 if (this.vida.valor <= 0) {
-                    deathLayer.cambiarMensaje(2);
-                    layer = deathLayer;
+                    pauseLayer.cambiarMensaje(2);
+                    layer = pauseLayer;
                     controles.continuar = false;
                 }
             }
@@ -177,8 +177,8 @@ class GameLayer extends Layer {
          //Agujeros
         for (var j = 0; j < this.agujeros.length; j++) {
             if (this.jugador.colisiona(this.agujeros[j])) {
-                deathLayer.cambiarMensaje(1);
-                layer = deathLayer;
+                pauseLayer.cambiarMensaje(1);
+                layer = pauseLayer;
                 controles.continuar = false;
             }
         }
@@ -192,8 +192,8 @@ class GameLayer extends Layer {
                     this.vida.valor -= 100;
                     this.suelosTrampa[k].hit = true;
                     if (this.vida.valor <= 0) {
-                        deathLayer.cambiarMensaje(4);
-                        layer = deathLayer;
+                        pauseLayer.cambiarMensaje(4);
+                        layer = pauseLayer;
                         controles.continuar = false;
                     }
                 }
@@ -209,8 +209,8 @@ class GameLayer extends Layer {
                     this.vida.valor -= 5;
                     this.murosVenenosos[k].hit = true;
                     if (this.vida.valor <= 0) {
-                        deathLayer.cambiarMensaje(4);
-                        layer = deathLayer;
+                        pauseLayer.cambiarMensaje(4);
+                        layer = pauseLayer;
                         controles.continuar = false;
                     }
                 }
@@ -420,8 +420,10 @@ class GameLayer extends Layer {
         //Fuente
         if (controles.fuente) {
             if ((this.fuente.hit == true) && (this.fuente.estado == estadosTrampa.activa)) {
+                pauseLayer.cambiarMensaje(5);
+                layer = pauseLayer;
+                controles.continuar = false;
                 //CAMBIAR SALA
-                this.iniciar();
             }
         }
 
