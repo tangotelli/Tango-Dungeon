@@ -6,6 +6,8 @@ class GameLayer extends Layer {
     }
 
     iniciar() {
+        reproducirMusica();
+
         this.espacio = new Espacio(0);
 
         this.fondoVidas = new Fondo(imagenes.vida, 960*0.1,320*0.07);
