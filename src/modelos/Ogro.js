@@ -4,6 +4,8 @@ class Ogro extends Enemigo {
         super(imagenes.ogro, x, y);
         this.vx = 0; // velocidadX
         this.vy = 0; // velocidadY
+        this.vxObjetivo = 1;
+        this.vyObjetivo = 1;
         this.vida = 150;
         this.texto = new MicroTexto(this.vida, this.x, this.y - this.alto);
         this.daño = 40;
@@ -13,7 +15,6 @@ class Ogro extends Enemigo {
         this.delay = 0;
         this.maxDelay = 100;
         this.orientacion = orientaciones.derecha;
-        this.xTope = null;
         // Animaciones
         this.aIdleDerecha = new Animacion(imagenes.ogro_idle_derecha, this.ancho, this.alto, 12, 4);
         this.aIdleIzquierda = new Animacion(imagenes.ogro_idle_izquierda, this.ancho, this.alto, 12, 4);
@@ -24,19 +25,26 @@ class Ogro extends Enemigo {
         this.animacion.actualizar();
         //this.x = this.x + this.vx;
         //this.y = this.y + this.vy;
-
-        if (this.orientacion == orientaciones.derecha) {
-            this.vx = 1;
-            this.animacion = this.aIdleDerecha;
-        } else {
-            this.vx = -1;
-            this.animacion = this.aIdleIzquierda;
+        if (this.vx == 0) {
+            this.vxObjetivo *= -1;
+            this.vx = this.vxObjetivo;
+            if (this.orientacion == orientaciones.derecha) {
+                this.orientacion = orientaciones.izquierda;
+            } else {
+                this.orientacion = orientaciones.derecha;
+            }
         }
 
-        if (this.xTope != null) {
-            if (this.x == this.xTope) {
-                this.vx = 0;
-            }
+        if (this.vy == 0) {
+            this.vyObjetivo *= -1;
+            this.vy = this.vyObjetivo;
+        }
+
+
+        if (this.orientacion == orientaciones.derecha) {
+            this.animacion = this.aIdleDerecha;
+        } else {
+            this.animacion = this.aIdleIzquierda;
         }
 
         this.texto.valor = this.vida;
@@ -71,7 +79,6 @@ class Ogro extends Enemigo {
     }
 
     rotar(posicion) {
-        this.xTope = posicion;
         if (posicion < this.x) {
             this.orientacion = orientaciones.izquierda;
         } else {

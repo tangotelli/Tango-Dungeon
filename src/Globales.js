@@ -18,3 +18,6 @@ const orientaciones = {
     derecha: 5,
     izquierda: 6,
 }
+
+let nivel = 3;
+let nivelMax = 3;

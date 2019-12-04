@@ -43,6 +43,9 @@ class PauseLayer extends Layer {
             case 6:
                 this.mensaje = new Fondo(imagenes.sala_final, 960 * 0.15, 480 * 0.15);
                 break;
+            case 7:
+                this.mensaje = new Fondo(imagenes.victoria, 960 * 0.15, 480 * 0.15);
+                break;
         }
     }
 }

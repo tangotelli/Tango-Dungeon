@@ -10,6 +10,8 @@ class GameLayer extends Layer {
 
         this.fondoVidas = new Fondo(imagenes.vida, 960*0.1,320*0.07);
         this.vida = new Texto(300,960*0.12,320*0.09 );
+        //PARA PRUEBAS
+        //this.vida = new Texto(1000000,960*0.12,320*0.09 );
 
         this.suelos = [];
         this.vacios = [];
@@ -22,7 +24,7 @@ class GameLayer extends Layer {
         this.murosVenenosos = [];
         this.muertos = 0;
 
-        this.cargarMapa("res/0.txt");
+        this.cargarMapa("res/" + nivel + ".txt");
         this.totalEnemigos = this.enemigos.length;
     }
 
@@ -52,9 +54,6 @@ class GameLayer extends Layer {
                     this.enemigos[i].rotar(this.jugador.x);
                     break;
                 case "Nigromante":
-                    this.enemigos[i].rotar(this.jugador.x);
-                    break;
-                case "Ogro":
                     this.enemigos[i].rotar(this.jugador.x);
                     break;
                 case "Demonio":
@@ -107,10 +106,10 @@ class GameLayer extends Layer {
                         direccion = -1;
                     }
                 }
+                var disparoN = new DisparoNigromante(dnX, dnY, direccion);
+                this.disparosNigromante.push(disparoN);
+                this.espacio.agregarDinamico(disparoN);
             }
-            var disparoN = new DisparoNigromante(dnX, dnY, direccion);
-            this.disparosNigromante.push(disparoN);
-            this.espacio.agregarDinamico(disparoN);
             this.delayDisparoNigromante = 100;
         }
         for (i = 0; i < this.disparosNigromante.length; i++) {
@@ -140,6 +139,10 @@ class GameLayer extends Layer {
                     this.espacio.eliminarDinamico(this.disparosNigromante[i]);
                     this.disparosNigromante.splice(i, 1);
                 }
+            }
+            if (this.disparosNigromante[i].colisiona(this.fuente)) {
+                this.espacio.eliminarDinamico(this.disparosNigromante[i]);
+                this.disparosNigromante.splice(i, 1);
             }
         }
         //Disparos
@@ -172,6 +175,10 @@ class GameLayer extends Layer {
                     this.espacio.eliminarDinamico(this.disparosJugador[i]);
                     this.disparosJugador.splice(i, 1);
                 }
+            }
+            if (this.disparosJugador[i].colisiona(this.fuente)) {
+                this.espacio.eliminarDinamico(this.disparosJugador[i]);
+                this.disparosJugador.splice(i, 1);
             }
         }
          //Agujeros
@@ -420,10 +427,21 @@ class GameLayer extends Layer {
         //Fuente
         if (controles.fuente) {
             if ((this.fuente.hit == true) && (this.fuente.estado == estadosTrampa.activa)) {
-                pauseLayer.cambiarMensaje(5);
-                layer = pauseLayer;
-                controles.continuar = false;
-                //CAMBIAR SALA
+                nivel++;
+                if (nivel == nivelMax) {
+                    pauseLayer.cambiarMensaje(6);
+                    layer = pauseLayer;
+                    controles.continuar = false;
+                } else if (nivel > nivelMax) {
+                    nivel = 0;
+                    pauseLayer.cambiarMensaje(7);
+                    layer = pauseLayer;
+                    controles.continuar = false;
+                } else {
+                    pauseLayer.cambiarMensaje(5);
+                    layer = pauseLayer;
+                    controles.continuar = false;
+                }
             }
         }
 
