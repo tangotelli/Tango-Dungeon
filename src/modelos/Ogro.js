@@ -16,9 +16,9 @@ class Ogro extends Enemigo {
         this.maxDelay = 100;
         this.orientacion = orientaciones.derecha;
         // Animaciones
-        this.aIdleDerecha = new Animacion(imagenes.ogro_idle_derecha, this.ancho, this.alto, 12, 4);
-        this.aIdleIzquierda = new Animacion(imagenes.ogro_idle_izquierda, this.ancho, this.alto, 12, 4);
-        this.animacion = this.aIdleDerecha;
+        this.aDerecha = new Animacion(imagenes.ogro_derecha, this.ancho, this.alto, 12, 4);
+        this.aIzquierda = new Animacion(imagenes.ogro_izquierda, this.ancho, this.alto, 12, 4);
+        this.animacion = this.aDerecha;
     }
 
     actualizar() {
@@ -42,9 +42,9 @@ class Ogro extends Enemigo {
 
 
         if (this.orientacion == orientaciones.derecha) {
-            this.animacion = this.aIdleDerecha;
+            this.animacion = this.aDerecha;
         } else {
-            this.animacion = this.aIdleIzquierda;
+            this.animacion = this.aIzquierda;
         }
 
         this.texto.valor = this.vida;

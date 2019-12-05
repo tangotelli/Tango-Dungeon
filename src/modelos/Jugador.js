@@ -6,9 +6,9 @@ class Jugador extends Modelo {
 
         this.orientacion = orientaciones.derecha;
         // Animaciones
-        this.aIdleDerecha = new Animacion(imagenes.jugador_idle_derecha, this.ancho, this.alto, 10, 4);
-        this.aIdleIzquierda = new Animacion(imagenes.jugador_idle_izquierda, this.ancho, this.alto, 10, 4);
-        this.animacion = this.aIdleDerecha;
+        this.aDerecha = new Animacion(imagenes.jugador_derecha, this.ancho, this.alto, 10, 4);
+        this.aIzquierda = new Animacion(imagenes.jugador_izquierda, this.ancho, this.alto, 10, 4);
+        this.animacion = this.aDerecha;
 
         //Disparos
         this.cadenciaDisparo = 30;
@@ -21,10 +21,10 @@ class Jugador extends Modelo {
         //this.y = this.y + this.vy;
 
         if (this.orientacion == orientaciones.derecha) {
-            this.animacion = this.aIdleDerecha;
+            this.animacion = this.aDerecha;
         }
         else {
-            this.animacion = this.aIdleIzquierda;
+            this.animacion = this.aIzquierda;
         }
 
         //Disparos

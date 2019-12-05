@@ -8,15 +8,15 @@ class GameLayer extends Layer {
     iniciar() {
         reproducirMusica();
 
-        this.botonGolpe = new Boton(imagenes.boton_golpear,960*0.94,320*0.07);
-        this.botonCuchillo = new Boton(imagenes.boton_cuchillos,960*0.82,320*0.07);
-        this.botonInteractua = new Boton(imagenes.boton_interactuar, 960*0.7, 320*0.07);
-        this.pad = new Pad(960*0.85,320*0.35);
+        this.botonGolpe = new Boton(imagenes.boton_golpear,960*0.94,480*0.04);
+        this.botonCuchillo = new Boton(imagenes.boton_cuchillos,960*0.82,480*0.04);
+        this.botonInteractua = new Boton(imagenes.boton_interactuar, 960*0.7, 480*0.04);
+        this.pad = new Pad(960*0.82,480*0.25);
 
         this.espacio = new Espacio(0);
 
-        this.fondoVidas = new Fondo(imagenes.vida, 960*0.1,320*0.07);
-        this.vida = new Texto(300,960*0.12,320*0.09 );
+        this.fondoVidas = new Fondo(imagenes.vida, 960*0.1,480*0.04);
+        this.vida = new Texto(300,960*0.12,480*0.055 );
         //PARA PRUEBAS
         //this.vida = new Texto(1000000,960*0.12,320*0.09 );
 
@@ -548,7 +548,7 @@ class GameLayer extends Layer {
         for(var i=0; i < pulsaciones.length; i++){
             if (this.pad.contienePunto(pulsaciones[i].x , pulsaciones[i].y) ){
                 var orientacionX = this.pad.obtenerOrientacionX(pulsaciones[i].x);
-                var orientacionY = this.pad.obtenerOrientacionY(pulsaciones[i].x);
+                var orientacionY = this.pad.obtenerOrientacionY(pulsaciones[i].y);
                 if ( orientacionX > 20) {
                     controles.moverX = orientacionX;
                 }
@@ -556,10 +556,10 @@ class GameLayer extends Layer {
                     controles.moverX = orientacionX;
                 }
                 if ( orientacionY > 20) {
-                    controles.moverY = orientacionX;
+                    controles.moverY = - orientacionY;
                 }
                 if ( orientacionY < -20) {
-                    controles.moverY = orientacionX;
+                    controles.moverY = - orientacionY;
                 }
             }
 

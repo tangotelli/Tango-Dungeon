@@ -15,9 +15,9 @@ class Demonio extends Enemigo {
         this.maxDelay = 100;
         this.orientacion = orientaciones.derecha;
         // Animaciones
-        this.aIdleDerecha = new Animacion(imagenes.demonio_idle_derecha, this.ancho, this.alto, 6, 4);
-        this.aIdleIzquierda = new Animacion(imagenes.demonio_idle_izquierda, this.ancho, this.alto, 6, 4);
-        this.animacion = this.aIdleDerecha;
+        this.aDerecha = new Animacion(imagenes.demonio_derecha, this.ancho, this.alto, 6, 4);
+        this.aIzquierda = new Animacion(imagenes.demonio_izquierda, this.ancho, this.alto, 6, 4);
+        this.animacion = this.aDerecha;
     }
 
     actualizar() {
@@ -26,9 +26,9 @@ class Demonio extends Enemigo {
         //this.y = this.y + this.vy;
 
         if (this.orientacion == orientaciones.derecha) {
-            this.animacion = this.aIdleDerecha;
+            this.animacion = this.aDerecha;
         } else {
-            this.animacion = this.aIdleIzquierda;
+            this.animacion = this.aIzquierda;
         }
 
         this.texto.valor = this.vida;

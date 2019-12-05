@@ -14,9 +14,9 @@ class MonstruoDelPantano extends Enemigo {
         this.maxDelay = 100;
         this.orientacion = orientaciones.derecha;
         // Animaciones
-        this.aIdleDerecha = new Animacion(imagenes.swampy_idle_derecha, this.ancho, this.alto, 12, 4);
-        this.aIdleIzquierda = new Animacion(imagenes.swampy_idle_izquierda, this.ancho, this.alto, 12, 4);
-        this.animacion = this.aIdleDerecha;
+        this.aDerecha = new Animacion(imagenes.swampy_derecha, this.ancho, this.alto, 12, 4);
+        this.aIzquierda = new Animacion(imagenes.swampy_izquierda, this.ancho, this.alto, 12, 4);
+        this.animacion = this.aDerecha;
     }
 
     actualizar() {
@@ -25,9 +25,9 @@ class MonstruoDelPantano extends Enemigo {
         //this.y = this.y + this.vy;
 
         if (this.orientacion == orientaciones.derecha) {
-            this.animacion = this.aIdleDerecha;
+            this.animacion = this.aDerecha;
         } else {
-            this.animacion = this.aIdleIzquierda;
+            this.animacion = this.aIzquierda;
         }
 
         this.texto.valor = this.vida;
