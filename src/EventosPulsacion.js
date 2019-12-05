@@ -15,12 +15,14 @@ function mouseup(event) {
 }
 
 function agregarPulsacion(id, tipoPulsacion, event ){
+    entrada = entradas.pulsaciones;
+
     x = event.pageX - canvas.offsetLeft;
     y = event.pageY - canvas.offsetTop;
 
     var p = {};
-    p.x = x /escaladoMinimo;
-    p.y = y /escaladoMinimo;
+    p.x = x;
+    p.y = y;
     p.id = id; // Ratón SOLO hay 1
     p.tipo = tipoPulsacion;
     p.timeStamp = event.timeStamp;

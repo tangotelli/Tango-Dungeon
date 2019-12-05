@@ -48,9 +48,10 @@ var imagenes = {
     siguiente_sala: "res/mensaje_siguiente_sala.png",
     sala_final: "res/mensaje_sala_final.png",
     victoria: "res/mensaje_victoria.png",
-    boton_golpear: "res/boton_golpear",
-    boton_cuchillos: "res/boton_cuchillo",
-    boton_interactua: "res/boton_interactua",
+    boton_golpear: "res/boton_golpear.png",
+    boton_cuchillos: "res/boton_cuchillo.png",
+    boton_interactuar: "res/boton_interactuar.png",
+    pad: "res/pad.png",
 };
 
 var rutasImagenes = Object.values(imagenes);

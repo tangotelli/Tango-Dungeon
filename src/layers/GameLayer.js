@@ -8,6 +8,11 @@ class GameLayer extends Layer {
     iniciar() {
         reproducirMusica();
 
+        this.botonGolpe = new Boton(imagenes.boton_golpear,960*0.94,320*0.07);
+        this.botonCuchillo = new Boton(imagenes.boton_cuchillos,960*0.82,320*0.07);
+        this.botonInteractua = new Boton(imagenes.boton_interactuar, 960*0.7, 320*0.07);
+        this.pad = new Pad(960*0.85,320*0.35);
+
         this.espacio = new Espacio(0);
 
         this.fondoVidas = new Fondo(imagenes.vida, 960*0.1,320*0.07);
@@ -296,6 +301,14 @@ class GameLayer extends Layer {
         this.jugador.dibujar();
         this.fondoVidas.dibujar();
         this.vida.dibujar();
+
+        //Botones
+        if (entrada == entradas.pulsaciones) {
+            this.botonCuchillo.dibujar();
+            this.botonGolpe.dibujar();
+            this.botonInteractua.dibujar();
+            this.pad.dibujar();
+        }
     }
 
     cargarMapa(ruta) {
@@ -522,6 +535,70 @@ class GameLayer extends Layer {
             this.espada.moverY(0);
         }
 
+    }
+
+    calcularPulsaciones(pulsaciones){
+        // Suponemos botones no estan pulsados
+        this.botonInteractua.pulsado = false;
+        this.botonGolpe.pulsado = false;
+        this.botonCuchillo.pulsado = false;
+        controles.moverX = 0;
+        controles.moverY = 0;
+
+        for(var i=0; i < pulsaciones.length; i++){
+            if (this.pad.contienePunto(pulsaciones[i].x , pulsaciones[i].y) ){
+                var orientacionX = this.pad.obtenerOrientacionX(pulsaciones[i].x);
+                var orientacionY = this.pad.obtenerOrientacionY(pulsaciones[i].x);
+                if ( orientacionX > 20) {
+                    controles.moverX = orientacionX;
+                }
+                if ( orientacionX < -20) {
+                    controles.moverX = orientacionX;
+                }
+                if ( orientacionY > 20) {
+                    controles.moverY = orientacionX;
+                }
+                if ( orientacionY < -20) {
+                    controles.moverY = orientacionX;
+                }
+            }
+
+
+            if (this.botonInteractua.contienePunto(pulsaciones[i].x , pulsaciones[i].y) ){
+                this.botonInteractua.pulsado = true;
+                if ( pulsaciones[i].tipo == tipoPulsacion.inicio) {
+                    controles.fuente = true;
+                    controles.cofre = true;
+                }
+            }
+
+            if (this.botonGolpe.contienePunto(pulsaciones[i].x , pulsaciones[i].y) ){
+                this.botonGolpe.pulsado = true;
+                if ( pulsaciones[i].tipo == tipoPulsacion.inicio) {
+                    controles.golpe = true;
+                }
+            }
+
+            if (this.botonCuchillo.contienePunto(pulsaciones[i].x , pulsaciones[i].y) ){
+                this.botonCuchillo.pulsado = true;
+                if ( pulsaciones[i].tipo == tipoPulsacion.inicio) {
+                    controles.disparo = true;
+                }
+            }
+        }
+
+        if ( !this.botonCuchillo.pulsado ){
+            controles.disparo = false;
+        }
+
+        if ( !this.botonGolpe.pulsado ){
+            controles.golpe = false;
+        }
+
+        if ( !this.botonInteractua.pulsado ){
+            controles.fuente = false;
+            controles.cofre = false;
+        }
     }
 
 

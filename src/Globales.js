@@ -24,6 +24,12 @@ let nivelMax = 3;
 
 var pulsaciones = [];
 
+var entradas = {}; // tipos
+entradas.pulsaciones = 1;
+entradas.teclado = 2;
+var entrada = entradas.teclado;
+
+
 var tipoPulsacion = {};
 tipoPulsacion.inicio = 1;
 tipoPulsacion.mantener = 2;
